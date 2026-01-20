@@ -48,7 +48,7 @@ public class S3PostPresigner {
 
         // Policy JSON Config
         Map<String, Object> policy = new LinkedHashMap<>();
-        policy.put("expiration", DateTimeFormatter.ISO_INSTANT.format(expiresAt));
+        policy.put("expiration", expiresAt.truncatedTo(ChronoUnit.MILLIS).toString());
 
         List<Object> conditions = new ArrayList<>();
         conditions.add(Map.of("bucket", req.getBucket()));
